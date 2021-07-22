@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface commonProps {
+  id: number;
   readonly: boolean;
   disabled: boolean;
   isForm: boolean;
@@ -18,7 +19,7 @@ export interface InputProps extends commonProps {
   'suffix-icon': React.ReactNode;
   maxlength: number;
   'show-word-limit': boolean;
-  placehoder: string;
+  placeholder: string;
   defaultvalue: string;
   size: string;
   bordered: boolean;

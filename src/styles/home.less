@@ -10,20 +10,68 @@
     left: 0;
     top: 0;
     height: 100vh;
-    border: 1px solid #999;
+    border-right: 1px solid #f1e8e8;
+    .logo_wrapper {
+      border-bottom: 1px solid #f1e8e8 ;
+      padding: 10px 0;
+      padding-left: 8px;
+      span {
+        color: #0079f2;
+        font-size: 20px;
+        display: inline-block;
+        margin-right: 8px;
+        font-weight: 600;
+      }
+    } 
+    .config_wrapper {
+      margin: 10px 0 20px 0;
+      .config_type {
+        padding-left: 8px;
+        .conifg_title {
+          font-size: 14px;
+          font-weight: 700;
+          color: #00000099;
+          line-height: 20px;
+          margin-bottom: 15px;
+        }
+        .drag_config {
+          border-radius: 1px dashed #cdd2d9 ;
+          width: 82px;
+          transition: border 0.3s cubic-bezier(0.23, 1, 0.32, 1);;
+          padding: 0 5px;
+          cursor: grab;
+          margin-bottom: 8px;
+          img {
+            width:70px
+          }
+        }
+      }
+    }
   }
   .center_config {
     height: 100vh;
     width: auto;
     margin: 0 350px 0 260px;
     box-sizing: border-box;
-    border: 1px solid pink;
+    .drager_canvas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 200px 100px;
+      background-color: #f0f0f0;
+      margin: 100px;
+    }
+    .hasItem {
+      
+    }
   }
   .right_config {
+    border-left: 1px solid #f1e8e8;
     width: 350px;
     position: absolute;
     right: 0;
     top: 0;
     padding-top: 3px;
+    height: 100vh;
   }
 }

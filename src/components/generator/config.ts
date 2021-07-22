@@ -3,6 +3,7 @@ import { _simpleConfigType } from './type';
 export const _simpleConfigs: _simpleConfigType = [
   {
     __config__: {
+      id: 1,
       label: '单行文本', // label 名称
       labelWidth: 100, // label 宽度 默认100
       showLabel: true, // 是否展示 label
@@ -27,7 +28,7 @@ export const _simpleConfigs: _simpleConfigType = [
       'show-word-limit': true, // 字数限制
       readonly: false, // 是否只读
       disabled: false, // 是否禁用
-      placehoder: '请输入单行文本', // 占位提示
+      placeholder: '请输入单行文本', // 占位提示
       defaultvalue: 'input', // 默认值
     },
   },
