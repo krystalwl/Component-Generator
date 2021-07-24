@@ -1,4 +1,4 @@
-import Home from './Home';
+import Home from './home/Home';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 export default function IndexPage() {

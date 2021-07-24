@@ -9,5 +9,5 @@ export const Components: ComponentsProps['ComponentsType'] = [
 ];
 
 export const borderStyle: CSSProperties = {
-  borderRadius: '1px dashed #cdd2d9',
+  border: '1px dashed #cdd2d9',
 };

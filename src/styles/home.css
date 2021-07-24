@@ -37,16 +37,31 @@
   line-height: 20px;
   margin-bottom: 15px;
 }
-.contanier .left_config .config_wrapper .config_type .drag_config {
-  border-radius: 1px dashed #cdd2d9;
-  width: 82px;
+.contanier .left_config .config_wrapper .config_type .confit_items {
+  display: flex;
+  justify-content: space-around;
+}
+.contanier .left_config .config_wrapper .config_type .confit_items .drag_config {
+  border: 1px dashed #cdd2d9;
+  width: 72px;
   transition: border 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  padding: 0 5px;
+  padding: 3px 5px;
   cursor: grab;
   margin-bottom: 8px;
 }
-.contanier .left_config .config_wrapper .config_type .drag_config img {
-  width: 70px;
+.contanier .left_config .config_wrapper .config_type .confit_items .drag_config img {
+  width: 60px;
+  height: 30px;
+}
+.contanier .left_config .config_wrapper .config_type .confit_items .drag_tip {
+  width: 82px;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #666666;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .contanier .center_config {
   height: 100vh;
