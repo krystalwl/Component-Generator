@@ -1,8 +1,9 @@
 import { INPUT, SELECT } from '../const/drag-const';
+import { InputConfig, SelectConfig } from '@/pages/home/menu_config/config';
 
 const initialState = {
-  input: { title: '单行文本' },
-  select: { title: '下拉框' },
+  input: InputConfig,
+  select: SelectConfig,
 };
 
 export default (
