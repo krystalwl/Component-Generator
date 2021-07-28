@@ -1,9 +1,9 @@
-import { Row, Col } from 'antd';
 import * as menus from './menu_config';
 import Stager from '../stager';
 import Settings from '../settings';
+import ActionBar from '../action-bar';
 import { connect } from 'react-redux';
-import * as actions from '@/store/action';
+import * as actions from '@/store/actions/drag-action';
 import { SmileOutlined } from '@ant-design/icons';
 import '@/styles/home.less';
 
@@ -28,6 +28,7 @@ const Container = (props) => {
         </div>
       </div>
       <div className="center_config">
+        <ActionBar />
         <Stager />
       </div>
       <div className="right_config">
@@ -37,13 +38,15 @@ const Container = (props) => {
   );
 };
 
-const mapStateDispatch = (state) => {
+const mapStateToProps = (state) => {
+  console.log(`state`, state);
   return {
-    input: state.input,
+    input: state.dragrReducer.input,
+    select: state.dragrReducer.select,
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return Object.keys(actions).reduce((prev, cur) => {
     prev[cur] = (payload) => dispatch(actions[cur](payload));
 
@@ -51,4 +54,4 @@ const mapDispatch = (dispatch) => {
   }, {});
 };
 
-export default connect(mapStateDispatch, mapDispatch)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

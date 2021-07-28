@@ -20,9 +20,6 @@ const Input = ({ item }) => {
         <img src={SimpleInput} />
       </div>
       <div className="drag_tip">{config.title}</div>
-      {/* <div>
-        <AntInput />
-      </div> */}
     </div>
   );
 };

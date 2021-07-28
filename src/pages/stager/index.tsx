@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback, CSSProperties } from 'react';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
-import { Input, Form } from 'antd';
+import { Input, Form, Select } from 'antd';
 import { connect } from 'react-redux';
+import { saveList } from '@/store/actions/action-bar';
 
 const borderStyle: CSSProperties = {
   border: '1px dashed #cdd2d9',
@@ -9,16 +10,17 @@ const borderStyle: CSSProperties = {
 
 const config = {
   Input,
+  Select,
 };
 
 const Stager = (props) => {
-  const [list, setList] = useState([]);
+  const { CmpList, saveListData } = props;
 
   const [collectProps, droper] = useDrop({
     accept: ['Input', 'Select'],
     drop: (item) => {
-      list.push(item);
-      setList(list);
+      CmpList.push(item);
+      saveListData(CmpList);
     },
     collect: (minoter: DropTargetMonitor) => ({
       isOver: minoter.isOver(),
@@ -32,8 +34,8 @@ const Stager = (props) => {
 
   return (
     <div ref={droper} style={{ height: '100vh', backgroundColor: bg }}>
-      {list.length ? (
-        list.map((ret, index) => {
+      {CmpList.length ? (
+        CmpList.map((ret, index) => {
           const Com = config[ret.type];
           const title = props[ret.type] ? props[ret.type].title : ret.title;
 
@@ -54,8 +56,16 @@ const Stager = (props) => {
 
 const mapStateDispatch = (state) => {
   return {
-    Input: state.input,
+    Input: state.dragrReducer.input,
+    Select: state.dragrReducer.select,
+    CmpList: state.actionBarReducer?.list || [],
   };
 };
 
-export default connect(mapStateDispatch, {})(Stager);
+const mapStateToProps = (dispatch) => {
+  return {
+    saveListData: (list: []) => dispatch(saveList(list)),
+  };
+};
+
+export default connect(mapStateDispatch, mapStateToProps)(Stager);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '@/store/action';
+import * as actions from '@/store/actions/drag-action';
 import { Input, Menu } from 'antd';
 import '@/styles/home.less';
 import ProForm, {

@@ -74,6 +74,14 @@
   margin: 0 350px 0 260px;
   box-sizing: border-box;
 }
+.contanier .center_config .action_bar {
+  height: 52px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #f1e8e8;
+  align-items: center;
+}
 .contanier .center_config .drager_canvas {
   display: flex;
   justify-content: center;
