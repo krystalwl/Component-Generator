@@ -1,3 +1,5 @@
+@import 'common.less';
+
 .contanier {
   position: relative;
   width: 100%;
@@ -39,9 +41,9 @@
           line-height: 20px;
           margin-bottom: 15px;
         }
-        .confit_items {
+        .config_items {
           display: flex;
-          justify-content: space-around;
+          justify-content: flex-start;
           .drag_config {
             border: 1px dashed #cdd2d9;
             width: 72px;
@@ -49,6 +51,7 @@
             padding: 3px 5px;
             cursor: grab;
             margin-bottom: 8px;
+            margin-right: 3px;
   
             img {
               width: 60px;
@@ -82,12 +85,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 200px 100px;
+      padding: 200px 260px;
       background-color: #f0f0f0;
       margin: 100px;
     }
 
-    .hasItem {}
   }
 
   .right_config {
@@ -98,5 +100,20 @@
     top: 0;
     padding-top: 3px;
     height: 100vh;
+    .ant-menu-item {
+      width: 50%;
+      text-align: center;
+    }
+  .ant-form {
+    .ant-form-item-label > label {
+      color: #606266;
+    }
+    .ant-input {
+      color: #606266 !important;
+    }
+    .ant-form-item {
+      margin-bottom: 14px;
+    }
+  }
   }
 }

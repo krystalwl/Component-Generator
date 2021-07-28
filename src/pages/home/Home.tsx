@@ -9,6 +9,8 @@ import { SimpleInput, MultipleInput } from '@/assets/imgs/index';
 import Right from './right_config';
 import Center from './center_config';
 
+import * as menus from './menu_config';
+
 const Home: FC<any> = () => {
   const iteminfo = _simpleConfigs.map((info) => {
     return {
@@ -37,7 +39,12 @@ const Home: FC<any> = () => {
         </div>
         <div className="config_wrapper">
           <div className="config_type">
-            {Components.map((item) => (
+            {Object.keys(menus).map((key, index) => {
+              const Com = menus[key];
+
+              return <Com key={index} />;
+            })}
+            {/* {Components.map((item) => (
               <div key={item.title}>
                 <div className="conifg_title">{item.title}</div>
                 <div className="confit_items">
@@ -61,7 +68,7 @@ const Home: FC<any> = () => {
                     ))}
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

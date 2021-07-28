@@ -1,3 +1,7 @@
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
 .contanier {
   position: relative;
   width: 100%;
@@ -37,23 +41,24 @@
   line-height: 20px;
   margin-bottom: 15px;
 }
-.contanier .left_config .config_wrapper .config_type .confit_items {
+.contanier .left_config .config_wrapper .config_type .config_items {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
-.contanier .left_config .config_wrapper .config_type .confit_items .drag_config {
+.contanier .left_config .config_wrapper .config_type .config_items .drag_config {
   border: 1px dashed #cdd2d9;
   width: 72px;
   transition: border 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   padding: 3px 5px;
   cursor: grab;
   margin-bottom: 8px;
+  margin-right: 3px;
 }
-.contanier .left_config .config_wrapper .config_type .confit_items .drag_config img {
+.contanier .left_config .config_wrapper .config_type .config_items .drag_config img {
   width: 60px;
   height: 30px;
 }
-.contanier .left_config .config_wrapper .config_type .confit_items .drag_tip {
+.contanier .left_config .config_wrapper .config_type .config_items .drag_tip {
   width: 82px;
   padding: 0 4px;
   font-size: 12px;
@@ -73,7 +78,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 200px 100px;
+  padding: 200px 260px;
   background-color: #f0f0f0;
   margin: 100px;
 }
@@ -85,4 +90,17 @@
   top: 0;
   padding-top: 3px;
   height: 100vh;
+}
+.contanier .right_config .ant-menu-item {
+  width: 50%;
+  text-align: center;
+}
+.contanier .right_config .ant-form .ant-form-item-label > label {
+  color: #606266;
+}
+.contanier .right_config .ant-form .ant-input {
+  color: #606266 !important;
+}
+.contanier .right_config .ant-form .ant-form-item {
+  margin-bottom: 14px;
 }
