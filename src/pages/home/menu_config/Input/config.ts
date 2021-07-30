@@ -2,7 +2,8 @@ export const config = {
   title: '单行文本', // label 名称
   type: 'Input',
   code: 'el-simple-input',
-  labelWidth: 100, // label 宽度 默认100
+  labelWidth: 70, // label 宽度 默认100
+  cptWidth: 220,
   showLabel: true, // 是否展示 label
   required: true, // 是否必填
   layout: 'colFormItem', // 横向还是纵向
@@ -21,7 +22,7 @@ export const config = {
   clearable: true, // 是否展示清空按钮
   'prefix-icon': 'el-icon-mobile', // 前图标
   'suffix-icon': '', // 后图标
-  maxlength: 11, // 最大长度
+  maxlength: undefined, // 最大长度
   'show-word-limit': true, // 字数限制
   readonly: false, // 是否只读
   disabled: false, // 是否禁用

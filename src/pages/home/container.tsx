@@ -39,10 +39,10 @@ const Container = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(`state`, state);
   return {
     input: state.dragrReducer.input,
     select: state.dragrReducer.select,
+    dragList: state.actionBarReducer.list,
   };
 };
 

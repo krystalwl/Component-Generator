@@ -93,4 +93,30 @@ export const _simpleConfigs: _simpleConfigType = [
       defaultvalue: 'input', // 默认值
     },
   },
+  {
+    __config__: {
+      title: '下拉框', // label 名称
+      type: 'Select',
+      code: 'el-select',
+      labelWidth: 100, // label 宽度 默认100
+      showLabel: true, // 是否展示 label
+      required: true, // 是否必填
+      layout: 'colFormItem', // 横向还是纵向
+      isForm: true, // 是否是 form 按钮
+
+      // 下面为可直接写在组件标签上的属性
+      size: 'defalut', // 大小 默认中等
+      bordered: true, // 是否需要边框
+      clearable: true, // 是否展示清空按钮
+      disabled: false, // 是否禁用
+      placeholder: '请输入单行文本', // 占位提示
+      defaultValue: 'select', // 默认值
+      open: false, // 是否展开下拉菜单
+      mode: 'defalut', // multiple 多选 tags  defalut
+      options: [
+        { key: '0', value: '选项一' },
+        { key: '1', value: '选项二' },
+      ],
+    },
+  },
 ];

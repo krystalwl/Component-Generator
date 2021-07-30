@@ -90,6 +90,16 @@
   background-color: #f0f0f0;
   margin: 100px;
 }
+.contanier .center_config .ant-form .ant-form-item {
+  padding: 10px;
+}
+.contanier .center_config .ant-form .ant-form-item:hover {
+  cursor: all-scroll;
+  background-color: #f6f7ff;
+}
+.contanier .center_config .ant-form .ant-input {
+  width: 220px;
+}
 .contanier .right_config {
   border-left: 1px solid #f1e8e8;
   width: 350px;
@@ -103,11 +113,16 @@
   width: 50%;
   text-align: center;
 }
+.contanier .right_config .ant-form {
+  margin-top: 20px;
+}
 .contanier .right_config .ant-form .ant-form-item-label > label {
   color: #606266;
 }
 .contanier .right_config .ant-form .ant-input {
   color: #606266 !important;
+  width: 220px !important;
+  border-radius: 4px;
 }
 .contanier .right_config .ant-form .ant-form-item {
   margin-bottom: 14px;

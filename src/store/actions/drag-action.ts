@@ -1,4 +1,4 @@
-import { INPUT, SELECT, SAVELIST } from '../const/drag-const';
+import { INPUT, SELECT } from '../const/drag-const';
 
 interface payloadTypes {}
 
