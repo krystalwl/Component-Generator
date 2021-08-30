@@ -2,9 +2,14 @@ import React, { useEffect, useState, useCallback, CSSProperties } from 'react';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { Input, Form, Select } from 'antd';
 import { connect } from 'react-redux';
-import { saveList } from '@/store/actions/action-bar';
-import { handleSelectItem } from '@/store/actions/select-drag';
+// import { saveList } from '@/store/actions/action-bar';
+// import { handleSelectItem } from '@/store/actions/select-drag';
 import _ from 'lodash';
+import { useSelector, useDispatch } from 'react-redux';
+import { createSelector } from 'reselect';
+import { saveList, ACTION_BAR_KEY } from '@/store/actionBar.slice';
+import { SELECT_DRAG_KEY, selectDrag } from '@/store/select-drag.slice';
+import { stateTypes } from '@/store/index.type';
 
 const borderStyle: CSSProperties = {
   border: '1px dashed #cdd2d9',
@@ -15,15 +20,17 @@ const config = {
   Select,
 };
 
-const Stager = (props) => {
-  const { CmpList, saveListData, selectItem, selectItemClick } = props;
-  console.log(`jijjij`, selectItem);
+const Stager = (props: any) => {
+  const CmpList = useSelector((state: stateTypes) => state[ACTION_BAR_KEY]);
+  const selectItem = useSelector((state: stateTypes) => state[SELECT_DRAG_KEY]);
+  const dispatch = useDispatch();
 
   const [collectProps, droper] = useDrop({
     accept: ['Input', 'Select'],
     drop: (item) => {
-      CmpList.push(item);
-      saveListData(CmpList);
+      let list = _.cloneDeep(CmpList);
+      list.push(item);
+      dispatch(saveList(list));
     },
     collect: (minoter: DropTargetMonitor) => ({
       isOver: minoter.isOver(),
@@ -34,10 +41,10 @@ const Stager = (props) => {
 
   const handleClick = (code: string) => {
     const item = CmpList?.find((i: any) => i.code === code);
-    selectItemClick(item);
+    dispatch(selectDrag(item));
   };
 
-  const handleChange = (e, ret, index: number) => {
+  const handleChange = (e: any, ret, index: number) => {
     let listClone = _.cloneDeep(CmpList);
     let itemClone = _.cloneDeep(selectItem);
     let val;
@@ -50,16 +57,15 @@ const Stager = (props) => {
     listClone[index]['defaultvalue'] = val;
     itemClone.defaultvalue = val;
     console.log(`val`, val);
-    saveListData(listClone);
-    selectItemClick(itemClone);
+    dispatch(saveList(listClone));
+    dispatch(selectDrag(itemClone));
   };
   useEffect(() => {
-    if (!CmpList.length) selectItemClick({});
+    if (!CmpList.length) dispatch(selectDrag({}));
   }, [CmpList.length]);
 
   const bg = collectProps.isOver ? '#f0f0f0' : '#fff';
   const content = collectProps.isOver ? '' : '拖拽组件到这里';
-
   return (
     <div ref={droper} style={{ height: '100vh', backgroundColor: bg }}>
       {CmpList.length ? (
@@ -71,7 +77,7 @@ const Stager = (props) => {
               <Form.Item label={title} key={index}>
                 <div onClick={() => handleClick(ret.code)}>
                   <Com
-                    key={ret.type}
+                    key={index}
                     onChange={(e, item, idx) => handleChange(e, ret, index)}
                     allowClear
                   />
@@ -89,20 +95,4 @@ const Stager = (props) => {
   );
 };
 
-const mapStateDispatch = (state) => {
-  return {
-    Input: state.dragrReducer.input,
-    Select: state.dragrReducer.select,
-    CmpList: state.actionBarReducer?.list || [],
-    selectItem: state.selectDragReducer?.state,
-  };
-};
-
-const mapStateToProps = (dispatch) => {
-  return {
-    saveListData: (list: []) => dispatch(saveList(list)),
-    selectItemClick: (selectItem: {}) => dispatch(handleSelectItem(selectItem)),
-  };
-};
-
-export default connect(mapStateDispatch, mapStateToProps)(Stager);
+export default Stager;

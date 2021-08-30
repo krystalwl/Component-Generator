@@ -22,11 +22,14 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@ant-design/pro-layout": "^6.5.0",
+    "@reduxjs/toolkit": "^1.6.1",
     "antd": "^4.16.8",
+    "lodash": "^4.17.21",
     "react": "17.x",
     "react-dnd": "^14.0.2",
     "react-dnd-html5-backend": "^14.0.0",
     "react-dom": "17.x",
+    "reselect": "^4.0.0",
     "umi": "^3.5.13"
   },
   "devDependencies": {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '@/store/actions/drag-action';
-import { handleSelectItem } from '@/store/actions/select-drag';
 import { Input, Menu, Form, InputNumber, Switch } from 'antd';
 import '@/styles/home.less';
 import { FormInstance } from 'antd/lib/form';
+import { useSelector, useDispatch } from 'react-redux';
+import { SELECT_DRAG_KEY, selectDrag } from '@/store/select-drag.slice';
+import { stateTypes } from '@/store/index.type';
 
 const { Item } = Form;
 
@@ -15,8 +15,9 @@ const formItemLayout = {
 
 const Settings = (props) => {
   const formRef = React.createRef<FormInstance>();
+  const selectItem = useSelector((state: stateTypes) => state[SELECT_DRAG_KEY]);
+  const dispatch = useDispatch();
 
-  const { selectItem, selectItemClick } = props;
   const [selectKey, setSelectKey] = useState<string[]>(['0']);
 
   const hanldelSelect = (e: { key: string }) => {
@@ -32,7 +33,6 @@ const Settings = (props) => {
     const name = changedFields[0].name[0];
     const value = changedFields[0].value;
     console.log(`changedFields[name]`, name, value);
-   
 
     // formRef.current!.setFieldsValue({ ...selectItem, name: value });
   };
@@ -40,6 +40,9 @@ const Settings = (props) => {
   useEffect(() => {
     selectItem && setForm();
   }, [selectItem]);
+  useEffect(() => {
+    dispatch(selectDrag(selectItem));
+  });
 
   return (
     <>
@@ -136,16 +139,4 @@ const Settings = (props) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    selectItem: state.selectDragReducer?.state,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectItemClick: (selectItem: {}) => dispatch(handleSelectItem(selectItem)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default Settings;

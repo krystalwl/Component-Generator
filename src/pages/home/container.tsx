@@ -3,7 +3,7 @@ import Stager from '../stager';
 import Settings from '../settings';
 import ActionBar from '../action-bar';
 import { connect } from 'react-redux';
-import * as actions from '@/store/actions/drag-action';
+// import * as actions from '@/store/actions/drag-action';
 import { SmileOutlined } from '@ant-design/icons';
 import '@/styles/home.less';
 
@@ -38,20 +38,21 @@ const Container = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    input: state.dragrReducer.input,
-    select: state.dragrReducer.select,
-    dragList: state.actionBarReducer.list,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     input: state.dragrReducer.input,
+//     select: state.dragrReducer.select,
+//     dragList: state.actionBarReducer.list,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return Object.keys(actions).reduce((prev, cur) => {
-    prev[cur] = (payload) => dispatch(actions[cur](payload));
+// const mapDispatchToProps = (dispatch) => {
+//   return Object.keys(actions).reduce((prev, cur) => {
+//     prev[cur] = (payload) => dispatch(actions[cur](payload));
 
-    return prev;
-  }, {});
-};
+//     return prev;
+//   }, {});
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;
+// export default connect(mapStateToProps, mapDispatchToProps)(Container);
