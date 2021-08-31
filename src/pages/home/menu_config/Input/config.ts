@@ -22,10 +22,11 @@ export const config = {
   clearable: true, // 是否展示清空按钮
   'prefix-icon': 'el-icon-mobile', // 前图标
   'suffix-icon': '', // 后图标
-  maxlength: undefined, // 最大长度
+  maxlength: 11, // 最大长度
   'show-word-limit': true, // 字数限制
   readonly: false, // 是否只读
   disabled: false, // 是否禁用
+  showCount: false, // 是否展示字数
   placeholder: '请输入单行文本', // 占位提示
   defaultvalue: 'input', // 默认值
 };

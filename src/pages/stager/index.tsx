@@ -33,6 +33,7 @@ const Stager = (props: any) => {
       let list = _.cloneDeep(CmpList);
       list.push(item);
       dispatch(saveList(list));
+      dispatch(selectDrag(item));
     },
     collect: (minoter: DropTargetMonitor) => ({
       isOver: minoter.isOver(),
@@ -46,24 +47,40 @@ const Stager = (props: any) => {
     dispatch(selectDrag(item));
   };
 
-  const handleChange = (e: any, ret, index: number) => {
-    let listClone = _.cloneDeep(CmpList);
-    let itemClone = _.cloneDeep(selectItem);
-    let val;
-    val =
-      ret.type === 'Input'
-        ? e.target.value
-        : ret.type === 'Select'
-        ? e
-        : undefined;
-    listClone[index]['defaultvalue'] = val;
-    itemClone.defaultvalue = val;
-    dispatch(saveList(listClone));
-    dispatch(selectDrag(itemClone));
-  };
+  const handleChange = useCallback(
+    (e: any, ret, index: number) => {
+      let listClone = _.cloneDeep(CmpList);
+      let itemClone = _.cloneDeep(selectItem);
+      let val;
+      val =
+        ret?.type === 'Input'
+          ? e.target.value
+          : ret.type === 'Select'
+          ? e
+          : undefined;
+      listClone[index]['defaultvalue'] = val;
+      itemClone.defaultvalue = val;
+      dispatch(saveList(listClone));
+      dispatch(selectDrag(itemClone));
+    },
+    [selectItem],
+  );
+
   useEffect(() => {
     if (!CmpList.length) dispatch(selectDrag({}));
   }, [CmpList.length]);
+
+  useEffect(() => {
+    if (!CmpList.length) return;
+    let data = _.cloneDeep(CmpList);
+    const index = CmpList.find((i, index) => {
+      if (i.type === selectItem.type) {
+        return index;
+      }
+    });
+    data.splice(index, 1, selectItem);
+    dispatch(saveList(data));
+  }, [selectItem]);
 
   console.log(`CmpList`, CmpList);
   console.log(`selectItem`, selectItem);
@@ -78,13 +95,38 @@ const Stager = (props: any) => {
           const title = props[ret.type] ? props[ret.type].title : ret.title;
           return (
             <Form>
-              <Form.Item label={title} key={index}>
+              <Form.Item label={selectItem.showLabel && title} key={index}>
                 <div onClick={() => handleClick(ret.code)}>
-                  <Com
-                    key={index}
-                    onChange={(e, item, idx) => handleChange(e, ret, index)}
-                    allowClear
-                  />
+                  {ret.type === 'Input' && (
+                    <Com
+                      key={index}
+                      onChange={(e, item, idx: number) =>
+                        handleChange(e, ret, index)
+                      }
+                      placeholder={ret.placeholder}
+                      allowClear={ret.allowClear}
+                      disabled={ret.disabled}
+                      showLabel={ret.showLabel}
+                    />
+                  )}
+                  {ret.type === 'Select' && (
+                    <Com
+                      key={index}
+                      onChange={(e, item, idx: number) =>
+                        handleChange(e, ret, index)
+                      }
+                      placeholder={ret.placeholder}
+                      disabled={ret.disabled}
+                      allowClear={ret.allowClear}
+                      showLabel={ret.showLabel}
+                    >
+                      {ret.options.map(
+                        (opts: { key: string; value: any }, index: number) => {
+                          return <Option value={opts.key}>{opts.value}</Option>;
+                        },
+                      )}
+                    </Com>
+                  )}
                   <DeleteTwoTone
                     twoToneColor="ff4d4f"
                     onClick={() => {

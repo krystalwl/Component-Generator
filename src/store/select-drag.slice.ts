@@ -9,9 +9,15 @@ const { reducer: SelectReducer, actions } = createSlice({
     selectDrag: (state, action) => {
       return action.payload;
     },
+    modifyDrag: (state, action: { payload: { keys: string; value: any } }) => {
+      // const {
+      //   payload: { keys, value },
+      // } = action;
+      Object.assign(state, action.payload);
+    },
   },
 });
 
-export const { selectDrag } = actions;
+export const { selectDrag, modifyDrag } = actions;
 
 export default SelectReducer;

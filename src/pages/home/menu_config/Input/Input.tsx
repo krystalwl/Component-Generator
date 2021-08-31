@@ -1,9 +1,14 @@
 import { config } from './config';
 import { useDrag } from 'react-dnd';
 import { SimpleInput } from '@/assets/imgs/index';
+import { modifyDrag, SELECT_DRAG_KEY } from '@/store/select-drag.slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { stateTypes } from '@/store/index.type';
+
 import '../index.less';
 
 const Input = ({ item }) => {
+  const selectItem = useSelector((state: stateTypes) => state[SELECT_DRAG_KEY]);
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
     type: 'Input',
     item: {

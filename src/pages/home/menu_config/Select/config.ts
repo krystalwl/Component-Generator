@@ -11,7 +11,7 @@ export const config = {
   bordered: true, // 是否需要边框
   clearable: true, // 是否展示清空按钮
   disabled: false, // 是否禁用
-  placeholder: '请输入单行文本', // 占位提示
+  placeholder: '请选择', // 占位提示
   defaultValue: 'select', // 默认值
   open: false, // 是否展开下拉菜单
   mode: 'defalut', // multiple 多选 tags  defalut
