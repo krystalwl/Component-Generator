@@ -4,6 +4,7 @@ import '@/styles/home.less';
 import { FormInstance } from 'antd/lib/form';
 import { useSelector, useDispatch } from 'react-redux';
 import { SELECT_DRAG_KEY, selectDrag } from '@/store/select-drag.slice';
+import { ACTION_BAR_KEY } from '@/store/actionBar.slice';
 import { stateTypes } from '@/store/index.type';
 
 const { Item } = Form;
@@ -16,6 +17,7 @@ const formItemLayout = {
 const Settings = (props) => {
   const formRef = React.createRef<FormInstance>();
   const selectItem = useSelector((state: stateTypes) => state[SELECT_DRAG_KEY]);
+  const CmpList = useSelector((state: stateTypes) => state[ACTION_BAR_KEY]);
   const dispatch = useDispatch();
 
   const [selectKey, setSelectKey] = useState<string[]>(['0']);
@@ -38,6 +40,9 @@ const Settings = (props) => {
   };
 
   useEffect(() => {
+    if (!CmpList.length) {
+      formRef.current!.resetFields();
+    }
     selectItem && setForm();
   }, [selectItem]);
   useEffect(() => {
@@ -56,14 +61,6 @@ const Settings = (props) => {
         <Menu.Item key="1">高级</Menu.Item>
       </Menu>
       {selectKey[0] === '0' && (
-        // <Form>
-        //   单行文本：
-        //   <Input
-        //     onChange={(e) => {
-        //       props.updateInput(e.target.value);
-        //     }}
-        //   />
-        // </Form>
         <Form
           {...formItemLayout}
           ref={formRef}

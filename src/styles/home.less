@@ -52,7 +52,7 @@
             cursor: grab;
             margin-bottom: 8px;
             margin-right: 3px;
-  
+
             img {
               width: 60px;
               height: 30px;
@@ -69,8 +69,6 @@
             overflow: hidden;
           }
         }
-
-       
       }
     }
   }
@@ -97,13 +95,32 @@
       background-color: #f0f0f0;
       margin: 100px;
     }
-    .ant-form  {
+    .ant-form {
       .ant-form-item {
-        padding:10px;
-      }
-      .ant-form-item:hover{
+        padding: 12px 20px;
         cursor: all-scroll;
         background-color: #f6f7ff;
+        .ant-form-item-control-input-content {
+          position: relative;
+          .anticon {
+            position: absolute;
+            border-radius: 50%;
+            padding: 2px;
+            cursor: pointer;
+            font-size: 14px;
+          }
+          .anticon-delete {
+            bottom: -23px;
+            right: 24px;
+            border: 1px solid #ff4d4f;
+            color: #ff4d4f;
+          }
+          .anticon-copy {
+            bottom: -23px;
+            right: -2px;
+            border: 1px solid #1890ff;
+          }
+        }
       }
       .ant-input {
         width: 220px;
@@ -123,19 +140,19 @@
       width: 50%;
       text-align: center;
     }
-  .ant-form {
-    margin-top: 20px;
-    .ant-form-item-label > label {
-      color: #606266;
+    .ant-form {
+      margin-top: 20px;
+      .ant-form-item-label > label {
+        color: #606266;
+      }
+      .ant-input {
+        color: #606266 !important;
+        width: 220px !important;
+        border-radius: 4px;
+      }
+      .ant-form-item {
+        margin-bottom: 14px;
+      }
     }
-    .ant-input {
-      color: #606266 !important;
-      width: 220px !important;
-      border-radius: 4px;
-    }
-    .ant-form-item {
-      margin-bottom: 14px;
-    }
-  }
   }
 }

@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useCallback, CSSProperties } from 'react';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { Input, Form, Select } from 'antd';
-import { connect } from 'react-redux';
-// import { saveList } from '@/store/actions/action-bar';
-// import { handleSelectItem } from '@/store/actions/select-drag';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSelector } from 'reselect';
-import { saveList, ACTION_BAR_KEY } from '@/store/actionBar.slice';
+import {
+  saveList,
+  ACTION_BAR_KEY,
+  deleteOne,
+  copyOne,
+} from '@/store/actionBar.slice';
 import { SELECT_DRAG_KEY, selectDrag } from '@/store/select-drag.slice';
 import { stateTypes } from '@/store/index.type';
+import { CopyTwoTone, DeleteTwoTone } from '@ant-design/icons';
 
 const borderStyle: CSSProperties = {
   border: '1px dashed #cdd2d9',
@@ -56,13 +58,15 @@ const Stager = (props: any) => {
         : undefined;
     listClone[index]['defaultvalue'] = val;
     itemClone.defaultvalue = val;
-    console.log(`val`, val);
     dispatch(saveList(listClone));
     dispatch(selectDrag(itemClone));
   };
   useEffect(() => {
     if (!CmpList.length) dispatch(selectDrag({}));
   }, [CmpList.length]);
+
+  console.log(`CmpList`, CmpList);
+  console.log(`selectItem`, selectItem);
 
   const bg = collectProps.isOver ? '#f0f0f0' : '#fff';
   const content = collectProps.isOver ? '' : '拖拽组件到这里';
@@ -81,6 +85,13 @@ const Stager = (props: any) => {
                     onChange={(e, item, idx) => handleChange(e, ret, index)}
                     allowClear
                   />
+                  <DeleteTwoTone
+                    twoToneColor="ff4d4f"
+                    onClick={() => {
+                      dispatch(deleteOne());
+                    }}
+                  />
+                  <CopyTwoTone onClick={() => dispatch(copyOne(ret))} />
                 </div>
               </Form.Item>
             </Form>

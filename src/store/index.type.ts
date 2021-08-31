@@ -4,5 +4,5 @@ import { SELECT_DRAG_KEY } from './select-drag.slice';
 export interface stateTypes {
   [ACTION_BAR_KEY]: any[];
   [SLICE_STAGE]: any[];
-  [SELECT_DRAG_KEY]: {};
+  [SELECT_DRAG_KEY]: any;
 }

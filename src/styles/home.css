@@ -91,11 +91,30 @@
   margin: 100px;
 }
 .contanier .center_config .ant-form .ant-form-item {
-  padding: 10px;
-}
-.contanier .center_config .ant-form .ant-form-item:hover {
+  padding: 12px 20px;
   cursor: all-scroll;
   background-color: #f6f7ff;
+}
+.contanier .center_config .ant-form .ant-form-item .ant-form-item-control-input-content {
+  position: relative;
+}
+.contanier .center_config .ant-form .ant-form-item .ant-form-item-control-input-content .anticon {
+  position: absolute;
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.contanier .center_config .ant-form .ant-form-item .ant-form-item-control-input-content .anticon-delete {
+  bottom: -23px;
+  right: 24px;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+}
+.contanier .center_config .ant-form .ant-form-item .ant-form-item-control-input-content .anticon-copy {
+  bottom: -23px;
+  right: -2px;
+  border: 1px solid #1890FF;
 }
 .contanier .center_config .ant-form .ant-input {
   width: 220px;

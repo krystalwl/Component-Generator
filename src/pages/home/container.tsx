@@ -3,7 +3,6 @@ import Stager from '../stager';
 import Settings from '../settings';
 import ActionBar from '../action-bar';
 import { connect } from 'react-redux';
-// import * as actions from '@/store/actions/drag-action';
 import { SmileOutlined } from '@ant-design/icons';
 import '@/styles/home.less';
 
