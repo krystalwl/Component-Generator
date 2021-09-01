@@ -2,7 +2,6 @@ import * as menus from './menu_config';
 import Stager from '../stager';
 import Settings from '../settings';
 import ActionBar from '../action-bar';
-import { connect } from 'react-redux';
 import { SmileOutlined } from '@ant-design/icons';
 import '@/styles/home.less';
 

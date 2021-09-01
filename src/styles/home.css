@@ -70,7 +70,7 @@
 }
 .contanier .center_config {
   height: 100vh;
-  width: auto;
+  width: 820px;
   margin: 0 350px 0 260px;
   box-sizing: border-box;
 }
@@ -114,14 +114,14 @@
 .contanier .center_config .ant-form .ant-form-item .ant-form-item-control-input-content .anticon-copy {
   bottom: -23px;
   right: -2px;
-  border: 1px solid #1890FF;
+  border: 1px solid #1890ff;
 }
 .contanier .center_config .ant-form .ant-input {
   width: 220px;
 }
 .contanier .right_config {
   border-left: 1px solid #f1e8e8;
-  width: 350px;
+  width: 360px;
   position: absolute;
   right: 0;
   top: 0;
@@ -145,4 +145,10 @@
 }
 .contanier .right_config .ant-form .ant-form-item {
   margin-bottom: 14px;
+}
+.contanier .right_config .ant-form .item_rules {
+  border-top: 1px solid #DCDFE6;
+}
+.contanier .right_config .ant-form .item_rules .tit {
+  margin-left: 20px;
 }

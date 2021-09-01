@@ -15,6 +15,7 @@ export const config = {
     },
   ],
   isForm: true, // 是否是 form 按钮
+  message: '请输入单行文本', // 必填校验提示语
 
   // 下面为可直接写在组件标签上的属性
   size: 'defalut', // 大小 默认中等

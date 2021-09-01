@@ -1,4 +1,4 @@
-import Container from './home/container';
+import Container from './layouts';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { Provider } from 'react-redux';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Menu, Form, InputNumber, Switch } from 'antd';
+import { Input, Menu, Form, InputNumber, Switch, Space, Button } from 'antd';
 import '@/styles/home.less';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -9,6 +9,11 @@ import {
 } from '@/store/select-drag.slice';
 import { ACTION_BAR_KEY } from '@/store/actionBar.slice';
 import { stateTypes } from '@/store/index.type';
+import {
+  MinusCircleOutlined,
+  PlusCircleOutlined,
+  PlusOutlined,
+} from '@ant-design/icons';
 
 const { Item } = Form;
 
@@ -34,19 +39,12 @@ const Settings = (props) => {
     form.setFieldsValue({ ...selectItem });
   };
 
-  const handleChangeSwitch = () => {
-    // switch
-  };
-
   const handleOnFieldsChange = (changedFields: any[], allFields: any[]) => {
     console.log(`obchangedFieldsject`, changedFields, allFields);
     const name = changedFields[0].name[0];
     const value = changedFields[0].value;
-    console.log(`setting-selectItem`, { [name]: value });
 
     dispatch(modifyDrag({ [name]: value }));
-
-    // formRef.current!.setFieldsValue({ ...selectItem, name: value });
   };
 
   useEffect(() => {
@@ -61,6 +59,10 @@ const Settings = (props) => {
       form.resetFields();
     }
   }, [CmpList]);
+
+  const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
 
   console.log(`setting-select`, CmpList);
   return (
@@ -79,65 +81,31 @@ const Settings = (props) => {
           <Form
             {...formItemLayout}
             form={form}
-            // ref={formRef}
             onFieldsChange={handleOnFieldsChange}
           >
-            <Item
-              label="字段名"
-              name="code"
-              // rules={[{ required: true, message: 'Please input your name!' }]}
-            >
+            <Item label="字段名" name="code">
               <Input placeholder="请输入字段名" />
             </Item>
-            <Item
-              label="标题"
-              name="title"
-              // rules={[{ required: true, message: 'Please input your title!' }]}
-            >
+            <Item label="标题" name="title">
               <Input placeholder="请输入标题" />
             </Item>
-            <Item
-              label="占位提示"
-              name="placeholder"
-              // rules={[{ required: true, message: 'Please input your tip!' }]}
-            >
+            <Item label="占位提示" name="placeholder">
               <Input placeholder="请输入占位提示" />
             </Item>
-            <Item
-              label="标签宽度"
-              name="labelWidth"
-              // rules={[
-              //   { required: true, message: 'Please input your lable—width!' },
-              // ]}
-            >
+            <Item label="标签宽度" name="labelWidth">
               <InputNumber />
             </Item>
-            <Item
-              label="组件宽度"
-              name="cptWidth"
-              // rules={[
-              //   { required: true, message: 'Please input your cmp—width!' },
-              // ]}
-            >
+            <Item label="组件宽度" name="cptWidth">
               <InputNumber />
             </Item>
-            <Item
-              label="默认值"
-              name="defaultvalue"
-              // rules={[
-              //   { required: true, message: 'Please input your defalut-value!' },
-              // ]}
-            >
+            <Item label="默认值" name="defaultvalue">
               <Input placeholder="请输入默认值" />
             </Item>
-            <Item
-              label="字符限制"
-              name="maxlength"
-              // rules={[
-              //   { required: true, message: 'Please input your character-limit!' },
-              // ]}
-            >
+            <Item label="字符限制" name="maxlength">
               <InputNumber />
+            </Item>
+            <Item label="提示语" name="message">
+              <Input />
             </Item>
             <Item
               label="能否清空"
@@ -151,22 +119,89 @@ const Settings = (props) => {
               name="showLabel"
               valuePropName={selectItem?.showLabel}
             >
-              <Switch onChange={handleChangeSwitch} defaultChecked={true} />
+              <Switch defaultChecked={true} />
             </Item>
             <Item
               label="是否只读"
               name="readonly"
               valuePropName={selectItem?.readonly}
             >
-              <Switch onChange={handleChangeSwitch} />
+              <Switch />
             </Item>
             <Item
               label="是否禁用"
               name="disabled"
               valuePropName={selectItem?.disabled}
             >
-              <Switch onChange={handleChangeSwitch} />
+              <Switch />
             </Item>
+            <Item
+              label="是否必填"
+              name="required"
+              valuePropName={selectItem?.required}
+            >
+              <Switch defaultChecked={true} />
+            </Item>
+
+            {/* <Item className="item_rules">
+              <div className="tit">校验规则</div>
+            </Item>
+            {selectItem?.regList?.length &&
+              selectItem.regList.map(
+                (reg: { pattern: string; message: string }) => (
+                  <>
+                    <Item label="表达式" name="regList-pattern">
+                      <Input value={reg.pattern} />
+                    </Item>
+                    <Item label="错误提示" name="regList-message">
+                      <Input value={reg.message} />
+                    </Item>
+                  </>
+                ),
+              )} */}
+          </Form>
+          <Form
+            name="dynamic_form_nest_item"
+            onFinish={onFinish}
+            onFieldsChange={handleOnFieldsChange}
+          >
+            <Form.List name="regList">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, fieldKey, ...restField }) => (
+                    <>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'pattern']}
+                        fieldKey={[fieldKey, 'pattern']}
+                        rules={[{ required: true, message: '请输入正则' }]}
+                      >
+                        <Input placeholder="请输入正则" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'message']}
+                        fieldKey={[fieldKey, 'message']}
+                        rules={[{ required: true, message: '请输入错误提示' }]}
+                      >
+                        <Input placeholder="请输入错误提示" />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </>
+                  ))}
+                  <Form.Item>
+                    <Button
+                      type="dashed"
+                      onClick={() => add()}
+                      block
+                      icon={<PlusOutlined />}
+                    >
+                      添加规则
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
           </Form>
         </div>
       ) : undefined}

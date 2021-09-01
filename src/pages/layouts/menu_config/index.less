@@ -1,0 +1,26 @@
+.common_drag_wrapper {
+  width: 72px;
+  margin-right: 6px;
+  .drag_img {
+    border: 1px dashed #cdd2d9;
+    width: 100%;
+    transition: border 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 3px 5px;
+    cursor: grab;
+    margin-bottom: 8px;
+    img {
+      width: 60px;
+      height: 30px;
+    }
+  }
+  .drag_tip {
+    width: 100%;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

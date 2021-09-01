@@ -95,7 +95,17 @@ const Stager = (props: any) => {
           const title = props[ret.type] ? props[ret.type].title : ret.title;
           return (
             <Form>
-              <Form.Item label={selectItem.showLabel && title} key={index}>
+              <Form.Item
+                label={selectItem.showLabel && title}
+                name={ret.code}
+                key={index}
+                rules={[
+                  {
+                    required: ret.required,
+                    message: ret.message,
+                  },
+                ]}
+              >
                 <div onClick={() => handleClick(ret.code)}>
                   {ret.type === 'Input' && (
                     <Com

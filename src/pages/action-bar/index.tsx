@@ -5,8 +5,6 @@ import {
   SaveTwoTone,
   DeleteTwoTone,
 } from '@ant-design/icons';
-// import { deleteAll } from '@/store/actions/action-bar';
-// import { connect } from 'react-redux';
 import { history } from 'umi';
 import { useSelector, useDispatch } from 'react-redux';
 import action_bar_reducer, {
@@ -69,17 +67,4 @@ const ActionBar = () => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     list: state.actionBarReducer.list,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     hanldeDeleteAll: () => dispatch(deleteAll()),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ActionBar);
 export default ActionBar;
